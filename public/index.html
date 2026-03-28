@@ -30,6 +30,19 @@
     <script src="register-sw.js" defer></script>
     <script src="search.js" defer></script>
     <script src="index.js" defer></script>
+    <script>
+  window.addEventListener('load', async () => {
+    // This tells the proxy which "Public Phone" to use
+    const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+    
+    // Replace the URL below if it ever stops working
+    const bareServer = "https://uv.student-info.xyz/bare/"; 
+
+    if (!await connection.getTransport()) {
+        await connection.setTransport("/epoxy/index.mjs", [{ wisp: "wss://wisp.mercurywork.shop/" }]);
+    }
+  });
+</script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
